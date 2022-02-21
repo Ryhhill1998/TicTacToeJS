@@ -3,7 +3,7 @@ var gameRound = 0;
 var gameText = $("#game-text");
 var markers = ["O", "X"];
 var marker = "X";
-var gameOn = true;
+var gameOn = false;
 
 // Start game
 $(".start-btn").click(function() {
@@ -19,6 +19,7 @@ $(".start-btn").click(function() {
     gameText.css("font-size", "3rem");
     gameText.css("padding", "1.5%");
     gameRound++;
+    gameOn = true;
 
   };
 
@@ -31,9 +32,9 @@ $(".btn").click(function() {
 
     var space = $(this);
 
-    if (gameRound > 0 && checkSpaceFull(space.text())) {
+    if (checkSpaceFull(space.text())) {
       gameText.text("Space Full! Please try another space.");
-    } else if (gameRound > 0) {
+    } else {
       space.text(marker);
       space.css("color", "#14FFEC");
 
@@ -122,3 +123,48 @@ function checkSpaceFull(spaceText) {
   return spaceFull;
 
 };
+
+// add hover class
+function addHoverClass(button, marker) {
+
+}
+
+// remove hover class
+function removeHoverClass(button) {
+
+}
+
+// Hover button function
+$(".btn").hover(function() {
+
+  if (gameOn && !checkSpaceFull($(this).text())) {
+    $(this).css("border-color", "white");
+  } else if (gameOn && checkSpaceFull($(this).text())) {
+    $(this).css("border-color", "red");
+  }
+
+}, function() {
+
+  if (gameOn) {
+    $(this).css("border-color", "#14FFEC");
+  }
+
+});
+
+// Hover button function
+$(".start-btn").hover(function() {
+
+  if (gameRound === 0) {
+    $(this).css("border-color", "white");
+  }
+
+}, function() {
+
+  if (gameOn) {
+    $(this).css("border-color", "#0D7377");
+  } else if (!gameOn && gameRound === 0) {
+    $(this).css("border-color", "#14FFEC");
+  }
+
+
+});

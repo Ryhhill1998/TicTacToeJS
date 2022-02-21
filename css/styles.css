@@ -35,3 +35,8 @@ body {
   color: #14FFEC;
   font-family: 'Bungee', cursive;
 }
+
+.hovered-over {
+  color: white;
+  background-color: #14FFEC;
+}
