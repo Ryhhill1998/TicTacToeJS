@@ -21,7 +21,7 @@ $(".start-btn").click(function() {
     gameRound++;
     gameOn = true;
 
-  };
+  }
 
 });
 
@@ -37,6 +37,8 @@ $(".btn").click(function() {
     } else {
       space.text(marker);
       space.css("color", "#14FFEC");
+      $(".btn").css("border-color", "#14FFEC");
+      space.css("border-color", "white");
 
       if (checkWinner(marker)) {
         gameText.text(marker + " wins! Refresh to play again");
@@ -49,10 +51,10 @@ $(".btn").click(function() {
           gameRound++;
           marker = markers[gameRound % 2];
           gameText.text(marker + "'s turn");
-        };
-      };
+        }
+      }
 
-    };
+    }
 
   }
 
@@ -89,7 +91,7 @@ function checkWinner(marker) {
   } else if ($(".diag-2").text() === winningCombo) {
     $(".diag-2").css("background-color", "green");
     markerWins = true;
-  };
+  }
 
   return markerWins;
 
@@ -104,8 +106,8 @@ function checkBoardFull() {
   for (var i = 0; i < 9; i++) {
     if (boardString[i] != "X" && boardString[i] != "O") {
       boardFull = false;
-    };
-  };
+    }
+  }
 
   return boardFull;
 
@@ -117,28 +119,18 @@ function checkSpaceFull(spaceText) {
   var spaceFull = false;
 
   if (spaceText === "X" || spaceText === "O") {
-    spaceFull = true;
-  };
+    spaceFull = true
+  }
 
   return spaceFull;
 
 };
 
-// add hover class
-function addHoverClass(button, marker) {
-
-}
-
-// remove hover class
-function removeHoverClass(button) {
-
-}
-
 // Hover button function
 $(".btn").hover(function() {
 
   if (gameOn && !checkSpaceFull($(this).text())) {
-    $(this).css("border-color", "white");
+    $(this).css("border-color", "green");
   } else if (gameOn && checkSpaceFull($(this).text())) {
     $(this).css("border-color", "red");
   }
